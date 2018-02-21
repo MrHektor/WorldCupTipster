@@ -1,0 +1,61 @@
+<html>
+    <head>
+        <title></title>
+    </head>
+    <body>
+        <div id="login">
+            <div v-if="notLoggedIn">
+                <input placeholder="Epost" v-model="email"><br>
+                <input placeholder="Lösenord" type="password" v-model="password"><br>
+                <br>
+                <button v-on:click="login">Logga in</button>   
+            </div>
+        </div>
+
+        <div id="content">
+            <div v-if="loggedIn">
+                Detta syns bara om man är inloggad.<br>
+                Hej {{ user.firstname }} {{ user.lastname }}
+            </div>
+        </div>
+
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.13/vue.min.js"></script>
+        <script>
+            var login = new Vue({
+                el: '#login',
+                data: {
+                    email: '',
+                    password: '',
+                    notLoggedIn: true
+                } ,
+                methods: {
+                    login: function(){
+                        // Call api to check login information
+
+                        // Temp test below
+                        if(this.email === "test" && this.password === "test"){
+                            this.notLoggedIn = false;
+                            content.loggedIn = true;
+                            content.user = {
+                                firstname: 'Marcus',
+                                lastname: 'Hektor'
+                            };
+                        }
+                        else{
+                            alert("Inloggning misslyckades");
+                        }
+                    }
+                }           
+            });
+
+            var content = new Vue({
+                el: '#content',
+                data: {
+                    loggedIn: !login.notLoggedIn,
+                    user: null
+                }
+            });
+        </script>   
+    </body>
+</html>
