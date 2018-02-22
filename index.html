@@ -6,73 +6,12 @@
     <style>
     [v-cloak] { display:none; }
     </style>
-        <div id="login">
-            <div v-if="notLoggedIn">
-                <input placeholder="Epost" v-model="email"><br>
-                <input placeholder="Lösenord" type="password" v-model="password"><br>
-                <br>
-                <button v-on:click="login">Logga in</button>   
-            </div>
+        <div id="app">
+            <div v-html="pageContent"></div>
         </div>
-
-        <div id="content">
-            <div v-if="loggedIn" v-cloak>
-                Detta syns bara om man är inloggad.<br>
-                Hej {{ user.firstname }} {{ user.lastname }}
-            </div>
-        </div>
-
+        
         <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.13/vue.min.js"></script>
-        <script>
-            var login = new Vue({
-                el: '#login',
-                data: {
-                    email: '',
-                    password: '',
-                    notLoggedIn: true
-                } ,
-                methods: {
-                    login: function(){
-                        // Call api to check login information
-
-                        // Temp test below
-                        if(this.email === "test" && this.password === "test"){
-                            this.notLoggedIn = false;
-                            content.loggedIn = true;
-                            content.user = {
-                                firstname: 'Marcus',
-                                lastname: 'Hektor'
-                            };
-
-                            this.loadGames();
-                        }
-                        else{
-                            alert("Inloggning misslyckades");
-                        }
-                    },
-                    loadGames: function(){
-                        alert("loading games");
-                        axios.get('http://192.168.0.102:81/api/game')
-                        .then(function (response) {
-                            debugger;
-                            alert('jaop');
-                        })
-                        .catch(function (error) {
-                            derbugger;
-                            alert('nope');
-                        });
-                    }
-                }           
-            });
-
-            var content = new Vue({
-                el: '#content',
-                data: {
-                    loggedIn: !login.notLoggedIn,
-                    user: null
-                }
-            });
-        </script>   
+        <script src="wwwroot/js/app.js"></script>
     </body>
 </html>
