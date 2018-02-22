@@ -3,6 +3,9 @@
         <title></title>
     </head>
     <body>
+    <style>
+    [v-cloak] { display:none; }
+    </style>
         <div id="login">
             <div v-if="notLoggedIn">
                 <input placeholder="Epost" v-model="email"><br>
@@ -13,7 +16,7 @@
         </div>
 
         <div id="content">
-            <div v-if="loggedIn">
+            <div v-if="loggedIn" v-cloak>
                 Detta syns bara om man är inloggad.<br>
                 Hej {{ user.firstname }} {{ user.lastname }}
             </div>
@@ -41,10 +44,24 @@
                                 firstname: 'Marcus',
                                 lastname: 'Hektor'
                             };
+
+                            this.loadGames();
                         }
                         else{
                             alert("Inloggning misslyckades");
                         }
+                    },
+                    loadGames: function(){
+                        alert("loading games");
+                        axios.get('http://192.168.0.102:81/api/game')
+                        .then(function (response) {
+                            debugger;
+                            alert('jaop');
+                        })
+                        .catch(function (error) {
+                            derbugger;
+                            alert('nope');
+                        });
                     }
                 }           
             });
