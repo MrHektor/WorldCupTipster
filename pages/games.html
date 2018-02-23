@@ -1,7 +1,13 @@
 <div id="gamesApp">
-    <ul>
-        <li v-bind:id="game.id" v-for="game in games" v-if="game.stage == 32" v-cloak>
-            {{ game.homeTeam.name }} <input type="text" style="width:50px;" /> - <input type="text" style="width:50px;" /> {{ game.awayTeam.name}}
-        </li>
-    </ul>
+    <h3>Gruppspel</h3>
+    <table v-cloak>
+        <tr v-bind:id="game.id" v-for="game in games" v-if="game.stage == 32">
+            <td>{{ game.starts }}</td>
+            <td>{{ game.homeTeam.name }}</td>
+            <td><input type="text" style="width:25px; text-align: right;" /></td>
+            <td>-</td>
+            <td><input type="text" style="width:25px;" /></td>
+            <td>{{ game.awayTeam.name }}</td>
+        </tr>
+    </table>  
 </div>
