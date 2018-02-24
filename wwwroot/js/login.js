@@ -10,7 +10,14 @@ var loginApp = new Vue({
 
             // Temp test 
             if(this.email === "test" && this.password === "test"){
-                localStorage.setItem("user", "kalle");
+                var user = {
+                    id: 1,
+                    email: 'enepost@gmail.com',
+                    firstname: 'Kalle',
+                    lastname: 'Anka'
+                };
+
+                localStorage.setItem("user",JSON.stringify(user));                
                 app.checkLogin();
             }
             else{

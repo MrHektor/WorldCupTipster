@@ -1,6 +1,27 @@
-<div id="loginApp">
-    <input placeholder="Epost" v-model="email"><br>
-    <input placeholder="Lösenord" type="password" v-model="password"><br>
-    <br>
-    <button v-on:click="login">Logga in</button> 
+<div class="row">
+    <div class="col-sm-4"></div>
+    <div class="col-sm-4">
+        <div id="loginApp">
+            <h1 style="margin-top:250px;">Logga in</h1>
+            <table>
+                <tr>
+                    <td></td>
+                    <td>
+                        <input class="form-control" placeholder="Epost" v-model="email">
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <input class="form-control" placeholder="Lösenord" type="password" v-model="password">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <b-button v-on:click="login" class="btn btn-light">Logga in</b-button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
 </div>
