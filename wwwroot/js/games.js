@@ -3,7 +3,8 @@ var gamesApp = new Vue({
     data: {
         games: null,
         user: null,
-        editable: false
+        editable: false,
+        loaded: false
     },
     mounted: function () {
         axios.get('http://localhost:81/api/tipster/GetAllBetsByUser?userId=' + app.pageParams.userId)
@@ -36,6 +37,7 @@ var gamesApp = new Vue({
                         game.class = "";
                     }
                 });
+                gamesApp.loaded = true;
             })
             .catch(function (error) {
 

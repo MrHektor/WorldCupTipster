@@ -3,6 +3,10 @@ var loginApp = new Vue({
     data: {
         email: '',
         password: '',
+        loaded: false
+    },
+    mounted: function(){
+        this.loaded = true;
     },
     methods: {
         login: function(){

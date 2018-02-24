@@ -33,9 +33,9 @@
         font-weight: bold;
     }
 
-    .gameContainer input:disabled{
+    .gameContainer input:disabled {
         background-color: black;
-        border:1px solid white;
+        border: 1px solid white;
         cursor: default;
     }
 
@@ -53,72 +53,76 @@
         font-size: 40px;
         margin: 0 auto;
         font-weight: bold;
-        border:1px solid black;
+        border: 1px solid black;
     }
 </style>
 <div id="gamesApp">
     <div v-cloak>
-        <div class="row">
-            <div class="col-sm-4"></div>
-            <div class="col-sm-4" style="text-align: center;">
-                <template v-if="gamesApp">
-                    <h1 v-if="gamesApp.editable">Ditt tips</h1>
-                    <h1 v-if="!gamesApp.editable">Tippat av {{ gamesApp.user.firstname }} {{ gamesApp.user.lastname }}</h1>
-                </template>
-                <br>
-                <h3>Grupp A</h3>
-                <br>
-            </div>
-        </div>
-        <div class="row gameContainer" style="padding:20px;" v-bind:id="game.id" v-for="game in games" v-if="game.stage == 32 && game.group == 'A'">
-            <div class="col-sm-4">
-                <img v-bind:src="'wwwroot/images/flags/' + game.homeTeam.name + '.png'" style="width:75px;height:75px;">
-                <h4 style="display:inline;padding:3px;font-size:45px;">{{ game.homeTeam.name }}</h4>
-            </div>
-            <div class="col-sm-4" style="text-align: center;">
-                <div v-if="game.editable">
-                    <table style="width:100%;">
-                        <tr>
-                            <td style="text-align: right; width:33%;">
-                                <input class="form-control number-input" onkeypress='return event.charCode >= 48 && event.charCode <= 57' v-model="game.betHomeGoals"
-                                    maxlength="2" />
-                            </td>
-                            <td style="text-align: center; width:33%;">
-                                <span style="font-weight: bold;">
-                                    {{ game.date }}
-                                    <br> {{ game.time }}
-                                </span>
-                            </td>
-                            <td style=" width:33%;">
-                                <input class="form-control number-input" onkeypress='return event.charCode >= 48 && event.charCode <= 57' v-model="game.betAwayGoals"
-                                    maxlength="2" />
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-                <div v-if="!game.editable">
-                    <table style="width:100%;">
-                        <tr>
-                            <td style="text-align: right; width:33%;">
-                                <input v-bind:class="game.class" class="form-control number-input" v-model="game.betHomeGoals" maxlength="2" disabled />
-                            </td>
-                            <td style="text-align: center; width:33%;">
-                                <span style="font-weight: bold;">
-                                    Resultat
-                                    <br> {{ game.resultHomeGoals }} - {{ game.resultAwayGoals }}
-                                </span>
-                            </td>
-                            <td style=" width:33%;">
-                                <input v-bind:class="game.class" class="form-control number-input"  v-model="game.betAwayGoals" maxlength="2" disabled />
-                            </td>
-                        </tr>
-                    </table>
+        <transition name="fader">
+            <div class="row" v-if="loaded">
+                <div class="col-sm-4"></div>
+                <div class="col-sm-4" style="text-align: center;">
+                    <template v-if="gamesApp">
+                        <h1 v-if="gamesApp.editable">Ditt tips</h1>
+                        <h1 v-if="!gamesApp.editable">Tippat av {{ gamesApp.user.firstname }} {{ gamesApp.user.lastname }}</h1>
+                    </template>
+                    <br>
+                    <h3>Grupp A</h3>
+                    <br>
                 </div>
             </div>
-            <div class="col-sm-4" style="text-align: right;">
-                <h4 style="display:inline;padding:3px;font-size:45px;">{{ game.awayTeam.name }}</h4>
-                <img v-bind:src="'wwwroot/images/flags/' + game.awayTeam.name + '.png'" style="width:75px;height:75px;">
+        </transition>
+        <transition name="fader">
+            <div class="row gameContainer" style="padding:20px;" v-bind:id="game.id" v-for="game in games" v-if="game.stage == 32 && game.group == 'A'">
+                <div class="col-sm-4">
+                    <img v-bind:src="'wwwroot/images/flags/' + game.homeTeam.name + '.png'" style="width:75px;height:75px;">
+                    <h4 style="display:inline;padding:3px;font-size:45px;">{{ game.homeTeam.name }}</h4>
+                </div>
+                <div class="col-sm-4" style="text-align: center;">
+                    <div v-if="game.editable">
+                        <table style="width:100%;">
+                            <tr>
+                                <td style="text-align: right; width:33%;">
+                                    <input class="form-control number-input" onkeypress='return event.charCode >= 48 && event.charCode <= 57' v-model="game.betHomeGoals"
+                                        maxlength="2" />
+                                </td>
+                                <td style="text-align: center; width:33%;">
+                                    <span style="font-weight: bold;">
+                                        {{ game.date }}
+                                        <br> {{ game.time }}
+                                    </span>
+                                </td>
+                                <td style=" width:33%;">
+                                    <input class="form-control number-input" onkeypress='return event.charCode >= 48 && event.charCode <= 57' v-model="game.betAwayGoals"
+                                        maxlength="2" />
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div v-if="!game.editable">
+                        <table style="width:100%;">
+                            <tr>
+                                <td style="text-align: right; width:33%;">
+                                    <input v-bind:class="game.class" class="form-control number-input" v-model="game.betHomeGoals" maxlength="2" disabled />
+                                </td>
+                                <td style="text-align: center; width:33%;">
+                                    <span style="font-weight: bold;">
+                                        Resultat
+                                        <br> {{ game.resultHomeGoals }} - {{ game.resultAwayGoals }}
+                                    </span>
+                                </td>
+                                <td style=" width:33%;">
+                                    <input v-bind:class="game.class" class="form-control number-input" v-model="game.betAwayGoals" maxlength="2" disabled />
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-sm-4" style="text-align: right;">
+                    <h4 style="display:inline;padding:3px;font-size:45px;">{{ game.awayTeam.name }}</h4>
+                    <img v-bind:src="'wwwroot/images/flags/' + game.awayTeam.name + '.png'" style="width:75px;height:75px;">
+                </div>
             </div>
-        </div>
+        </transition>
     </div>
 </div>

@@ -13,12 +13,22 @@
         }
 
         body {
-            background-image: url("wwwroot/images/tipsterbg.png");            
+            background-image: url("wwwroot/images/tipsterbg.png");
         }
 
         @font-face {
             font-family: "custom";
             src: url('wwwroot/fonts/customFont.ttf') format('truetype');
+        }
+
+        .fader-enter-active,
+        .fader-leave-active {
+            transition: opacity 1s;
+        }
+
+        .fader-enter,
+        .fader-leave-to {
+            opacity: 0;
         }
     </style>
     <div id="app">
