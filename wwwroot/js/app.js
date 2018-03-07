@@ -3,7 +3,8 @@ var app = new Vue({
     data: {
         user: 33,
         pageContent: '',
-        pageParams: ''
+        pageParams: '',
+        apiUrl: 'http://localhost:81/api/tipster/'
     },
     mounted: function(){
         this.checkLogin();

@@ -7,7 +7,7 @@ var gamesApp = new Vue({
         loaded: false
     },
     mounted: function () {
-        axios.get('http://localhost:81/api/tipster/GetAllBetsByUser?userId=' + app.pageParams.userId)
+        axios.get(app.apiUrl + 'GetAllBetsByUser?userId=' + app.pageParams.userId)
             .then(function (response) {
                 gamesApp.games = response.data.games;
                 gamesApp.user = response.data.user;

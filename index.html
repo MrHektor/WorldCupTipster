@@ -4,6 +4,7 @@
     <title></title>
     <link type="text/css" rel="stylesheet" href="//unpkg.com/bootstrap/dist/css/bootstrap.min.css" />
     <link type="text/css" rel="stylesheet" href="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.css" />
+    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
 </head>
 
 <body>
@@ -32,10 +33,14 @@
         }
     </style>
     <div id="app">
-        <div id="menu" style="width:750px; margin:0 auto;">Visa meny här om inloggad</div>
+        <div id="menu" style="width:750px; margin:0 auto;padding-top:20px;">
+            <i class="fas fa-user fa-7x"></i>
+            <i class="far fa-user fa-7x"></i>
+            <i class="fal fa-user fa-7x"></i>
+        </div>
         <div v-html="pageContent" style="width:970px; margin:0 auto;"></div>
     </div>
-
+    
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.13/vue.min.js"></script>
     <script src="//unpkg.com/babel-polyfill@latest/dist/polyfill.min.js"></script>
