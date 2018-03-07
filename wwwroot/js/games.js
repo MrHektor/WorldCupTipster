@@ -38,12 +38,38 @@ var gamesApp = new Vue({
                     }
                 });
                 gamesApp.loaded = true;
+                gamesApp.calculateRoundOf16();
             })
             .catch(function (error) {
 
-            });
+            }); 
     },
-    methods: function () {
+    methods: {
+        calculateRoundOf16: function(){
+            let betCompleted = true;
+            let groupGames = gamesApp.games.filter(game => game.stage === 32);
 
+            for(let game of groupGames){
+                if(!game.betHomeGoals || !game.betAwayGoals){
+                    betCompleted = false;
+                    break;
+                }
+            }
+
+            if(!betCompleted){
+                return;
+            }
+
+
+        },
+        calculateRoundOf8: function(){
+
+        },
+        calculateSemis: function(){
+
+        },
+        calculateFinal: function(){
+
+        },
     }
 });

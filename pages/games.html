@@ -39,8 +39,7 @@
         cursor: default;
     }
 
-    .gameContainer:hover {
-        transform: scale(1.02);
+    .gameSection {
         border: 1px solid black;
         background-color: rgba(236, 225, 225, 0.2);
     }
@@ -54,6 +53,21 @@
         margin: 0 auto;
         font-weight: bold;
         border: 1px solid black;
+        margin-top: 12px;
+    }
+
+    .game-header{
+        display:inline;
+        padding:3px;
+        font-size:45px;
+        position: relative;
+        top: 10px;
+    }
+
+    .game-info{
+        font-weight: bold;
+        position: relative;
+        top: 8px;
     }
 </style>
 <div id="gamesApp">
@@ -67,15 +81,16 @@
                         <h1 v-if="!gamesApp.editable">Tippat av {{ gamesApp.user.firstname }} {{ gamesApp.user.lastname }}</h1>
                     </template>
                     <br>
-                    <h3>Grupp A</h3>
+                    <h3>Gruppspel</h3>
                     <br>
                 </div>
             </div>
         </transition>
-        <div class="row gameContainer" style="padding:20px;" v-bind:id="game.id" v-for="game in games" v-if="game.stage == 32 && game.group == 'A'">
+        <div id="groupGames" class="gameSection" v-if="loaded">
+        <div class="row gameContainer" style="padding:20px;" v-bind:id="game.id" v-for="game in games" v-if="game.stage == 32">
             <div class="col-sm-4">
                 <img v-bind:src="'wwwroot/images/flags/' + game.homeTeam.name + '.png'" style="width:75px;height:75px;">
-                <h4 style="display:inline;padding:3px;font-size:45px;">{{ game.homeTeam.name }}</h4>
+                <h4 class="game-header">{{ game.homeTeam.name }}</h4>
             </div>
             <div class="col-sm-4" style="text-align: center;">
                 <div v-if="game.editable">
@@ -86,7 +101,7 @@
                                     maxlength="2" />
                             </td>
                             <td style="text-align: center; width:33%;">
-                                <span style="font-weight: bold;">
+                                <span class="game-info">
                                     {{ game.date }}
                                     <br> {{ game.time }}
                                 </span>
@@ -105,7 +120,7 @@
                                 <input v-bind:class="game.class" class="form-control number-input" v-model="game.betHomeGoals" maxlength="2" disabled />
                             </td>
                             <td style="text-align: center; width:33%;">
-                                <span style="font-weight: bold;">
+                                <span class="game-info">
                                     Resultat
                                     <br> {{ game.resultHomeGoals }} - {{ game.resultAwayGoals }}
                                 </span>
@@ -118,9 +133,10 @@
                 </div>
             </div>
             <div class="col-sm-4" style="text-align: right;">
-                <h4 style="display:inline;padding:3px;font-size:45px;">{{ game.awayTeam.name }}</h4>
+                <h4 class="game-header">{{ game.awayTeam.name }}</h4>
                 <img v-bind:src="'wwwroot/images/flags/' + game.awayTeam.name + '.png'" style="width:75px;height:75px;">
             </div>
         </div>
+    </div>
     </div>
 </div>

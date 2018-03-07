@@ -31,16 +31,35 @@
         .fader-leave-to {
             opacity: 0;
         }
+
+        .menu-icon {
+            color: black;
+        }
+
+        .menu-icon:hover {
+            color: #b7000c;
+            cursor: pointer;
+        }
+
+        .fast-spin {
+            -webkit-animation: fa-spin 0.25s infinite linear;
+            animation: fa-spin 0.25s infinite linear;
+        }
     </style>
     <div id="app">
-        <div id="menu" style="width:750px; margin:0 auto;padding-top:20px;">
-            <i class="fas fa-user fa-7x"></i>
-            <i class="far fa-user fa-7x"></i>
-            <i class="fal fa-user fa-7x"></i>
+        <div id="menu" class="fa-5x" style="margin:0 auto;padding-top:20px;text-align:center;">
+            <span class="fa-layers fa-fw menu-icon" onclick="redirectFromMenu(this,'games');">
+                <i class="fas fa-circle"></i>
+                <i class="fa-inverse fas fa-user" data-fa-transform="shrink-6"></i>
+            </span>
+            <span class="fa-layers fa-fw menu-icon" onclick="redirectFromMenu(this, 'leaderboard');">
+                <i class="fas fa-circle"></i>
+                <i class="fa-inverse fas fa-trophy" data-fa-transform="shrink-6"></i>
+            </span>
         </div>
         <div v-html="pageContent" style="width:970px; margin:0 auto;"></div>
     </div>
-    
+
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.13/vue.min.js"></script>
     <script src="//unpkg.com/babel-polyfill@latest/dist/polyfill.min.js"></script>
